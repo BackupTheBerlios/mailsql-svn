@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<title>mailsql: socketfactory.c Source File</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.3.6 -->
+<div class="qindex"><a class="qindex" href="index.html">Page&nbsp;principale</a> | <a class="qindex" href="files.html">Liste&nbsp;des&nbsp;fichiers</a></div>
+<h1>socketfactory.c</h1><div class="fragment"><pre>00001 <span class="preprocessor">#include &lt;sys/socket.h&gt;</span>
+00002 <span class="preprocessor">#include &lt;sys/types.h&gt;</span>
+00003 <span class="preprocessor">#include &lt;netinet/in.h&gt;</span>
+00004 <span class="preprocessor">#include &lt;unistd.h&gt;</span>
+00005 <span class="preprocessor">#include &lt;fcntl.h&gt;</span>
+00006 <span class="preprocessor">#include &lt;string.h&gt;</span>
+00007 <span class="preprocessor">#include &lt;errno.h&gt;</span>
+00008 
+00013 <span class="keywordtype">int</span> server_socket (<span class="keywordtype">int</span> port)
+00014 {
+00015   <span class="keywordtype">int</span> sock;
+00016   <span class="keywordtype">int</span> optval = -1;
+00017   <span class="keyword">struct </span>sockaddr_in sockname;
+00018   
+00019   <span class="keywordflow">if</span> ((sock = socket (PF_INET, SOCK_STREAM, 0)) &lt; 0)
+00020     {
+00021       <span class="keywordflow">return</span> -1;
+00022     }
+00023 
+00024   setsockopt (sock, SOL_SOCKET, SO_REUSEADDR, &amp;optval, <span class="keyword">sizeof</span> (<span class="keywordtype">int</span>));
+00025 
+00026 <span class="preprocessor">#ifdef NO_BLOCK</span>
+00027 <span class="preprocessor"></span>  <span class="keywordflow">if</span> (!(fcntl (sock, F_SETFL, O_NONBLOCK)))
+00028     {
+00029       <span class="keywordflow">return</span> -1;
+00030     }
+00031 <span class="preprocessor">#endif</span>
+00032 <span class="preprocessor"></span>
+00033   <span class="comment">//on met a zero par securitÃ©</span>
+00034   memset ((<span class="keywordtype">char</span> *) &amp;sockname, 0, <span class="keyword">sizeof</span> (<span class="keyword">struct</span> sockaddr_in));
+00035 
+00036   <span class="comment">//on remplis la structure</span>
+00037   sockname.sin_family = AF_INET;
+00038   sockname.sin_port = htons (port);
+00039   sockname.sin_addr.s_addr = htonl (INADDR_ANY);
+00040 
+00041   <span class="comment">//on bind</span>
+00042   <span class="keywordflow">if</span> (bind (sock, (<span class="keyword">struct</span> sockaddr *) &amp;sockname, <span class="keyword">sizeof</span> (<span class="keyword">struct</span> sockaddr_in))
+00043       &lt; 0)
+00044     {
+00045       <span class="keywordflow">return</span> -1;
+00046     }
+00047 
+00048   <span class="keywordflow">if</span> (listen (sock, 100) &lt; 0)
+00049     {
+00050       <span class="keywordflow">return</span> -1;
+00051     }
+00052 
+00053   <span class="comment">//on revoie le socket</span>
+00054   <span class="keywordflow">return</span> sock;
+00055 }
+00056 
+00057 <span class="comment">//retourne un socket connectÃ©</span>
+00058 <span class="keywordtype">int</span> sock_listen (<span class="keywordtype">int</span> main_sock)
+00059 {
+00060   <span class="keywordtype">int</span> sock;
+00061 
+00062   <span class="keywordflow">if</span> ((sock = accept (main_sock, NULL, 0)) &lt; 0)
+00063     {
+00064       <span class="keywordflow">if</span> (errno == EINTR)
+00065         {
+00066           shutdown (main_sock, SHUT_RDWR);
+00067           close (main_sock);
+00068           <span class="keywordflow">return</span> -1;
+00069         }
+00070       <span class="keywordflow">else</span>
+00071         {
+00072           <span class="keywordflow">return</span> -1;
+00073         }
+00074     }
+00075   <span class="keywordflow">return</span> sock;
+00076 }
+</pre></div><hr size="1"><address style="align: right;"><small>Généré le Tue Aug 10 00:16:01 2004 pour mailsql par 
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border=0 > 
+</a>1.3.6 </small></address>
+</body>
+</html>

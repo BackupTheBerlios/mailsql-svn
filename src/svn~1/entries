@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="7"
+   name=""
+   committed-date="2004-08-11T22:14:50.882491Z"
+   url="svn://localhost/src"
+   kind="dir"
+   uuid="6b96d66f-5de1-0310-b47a-a6ee462d83a9"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="socketfactory.c"
+   text-time="2004-08-11T20:35:54.000000Z"
+   committed-date="2004-08-11T09:26:37.789498Z"
+   checksum="b1bdea3624852a8c72a90de1dfc92a0d"
+   kind="file"
+   prop-time="2004-08-11T09:27:30.000000Z"/>
+<entry
+   committed-rev="6"
+   name="xmlparser.h"
+   text-time="2004-08-11T21:51:34.000000Z"
+   committed-date="2004-08-11T22:13:59.064917Z"
+   checksum="ded95ad8c2a41c23d59b8589f0a86d6e"
+   kind="file"/>
+<entry
+   committed-rev="3"
+   name="conf.xml"
+   text-time="2004-08-11T09:47:42.000000Z"
+   committed-date="2004-08-11T10:45:33.747744Z"
+   checksum="fee7dcc964a74f56a16d07e80446c011"
+   kind="file"
+   prop-time="2004-08-11T09:27:30.000000Z"/>
+<entry
+   committed-rev="7"
+   name="main.c"
+   text-time="2004-08-11T20:35:54.000000Z"
+   committed-date="2004-08-11T22:14:50.882491Z"
+   checksum="0b26db5a08a17c70ca7251216ff3d293"
+   kind="file"
+   prop-time="2004-08-11T09:27:30.000000Z"/>
+<entry
+   committed-rev="1"
+   name="socketfactory.h"
+   text-time="2004-08-11T09:27:30.000000Z"
+   committed-date="2004-08-11T09:26:37.789498Z"
+   checksum="61075fa3d5d06bcf6b2ac4297cdcd77f"
+   kind="file"
+   prop-time="2004-08-11T09:27:30.000000Z"/>
+<entry
+   committed-rev="7"
+   name="Makefile"
+   text-time="2004-08-11T22:11:27.000000Z"
+   committed-date="2004-08-11T22:14:50.882491Z"
+   checksum="750e72a1fbfefa117d4779e9c5b6d35c"
+   kind="file"
+   prop-time="2004-08-11T09:27:30.000000Z"/>
+<entry
+   committed-rev="5"
+   name="xmlparser.c"
+   text-time="2004-08-11T22:06:44.000000Z"
+   committed-date="2004-08-11T22:13:31.760524Z"
+   checksum="048468009167739e650b9fe9d6a619d7"
+   kind="file"
+   prop-time="2004-08-11T09:27:31.000000Z"/>
+</wc-entries>
